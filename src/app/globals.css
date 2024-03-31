@@ -1,0 +1,47 @@
+/* reset.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* main.css */
+html, 
+body { 
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll if content is wider */
+}
+
+.react-flow-container {
+  width: 100%; 
+  max-width: 1100px; 
+  margin: 20px auto;  
+  display: flex;     
+  justify-content: center; 
+  align-items: center;   
+  height: calc(100vh - 40px); /* Subtract margin from available height */
+}
+
+.react-flow__node-customNode {
+  font-size: 10px;
+  width: 180px;
+  background: #f5f5f6;
+  color: #222;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 15%), 0 2px 4px -1px rgb(0 0 0 / 8%);
+  border-radius: 2px;
+}
+
+.react-flow__node-customNode .react-flow__handle {
+  top: 24px;
+  right: -15px;
+  width: 6px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #778899;
+}
+
+.react-flow__edge {
+  stroke: black;
+  stroke-width: 2px;
+}

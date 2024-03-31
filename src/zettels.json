@@ -1,0 +1,54 @@
+{
+    "nodes": [
+        {
+            "id": "513591fa-e823-4683-a97e-2a85d09a9c72",
+            "title": "LVMH's Business Segments",
+            "body": "LVMH divides its business into five segments: Fashion & Leather Goods, Selective Retailing, Watches & Jewelry, Perfumes & Cosmetics, and Other Activities (luxury hotels, yachts).",
+            "document_id": "d477efcb-2a94-4123-9e50-df84389afcac"
+        },
+        {
+            "id": "6fe7ace3-6582-405f-bdd0-3ed3f5b75d9b",
+            "title": "LVMH's Market Position",
+            "body": "As of writing, LVMH is the largest luxury conglomerate, with a market cap of roughly $360 billion, making it the second-biggest public company in Europe and 20th in the world.",
+            "document_id": "d477efcb-2a94-4123-9e50-df84389afcac"
+        },
+        {
+            "id": "4bd00764-9c19-4f58-8d1e-1dddcf32eb0d",
+            "title": "LVMH's Formation",
+            "body": "LVMH Mo\u00ebt Hennessy Louis Vuitton was formed in 1987 through a merger between Louis Vuitton and Mo\u00ebt Hennessy, combining expertise in fashion/leather goods and champagne/cognac respectively.",
+            "document_id": "d477efcb-2a94-4123-9e50-df84389afcac"
+        },
+        {
+            "id": "b6d8ff63-708e-40d5-b972-b8b744c9d507",
+            "title": "Bernard Arnault's Vision",
+            "body": "Bernard Arnault had the vision of housing multiple prestigious luxury brands or 'maisons' under one umbrella, which he turned into reality through strategic mergers and acquisitions over nearly four decades.",
+            "document_id": "d477efcb-2a94-4123-9e50-df84389afcac"
+        }
+    ],
+    "edges": [
+        {
+            "source": "513591fa-e823-4683-a97e-2a85d09a9c72",
+            "target": "6fe7ace3-6582-405f-bdd0-3ed3f5b75d9b"
+        },
+        {
+            "source": "513591fa-e823-4683-a97e-2a85d09a9c72",
+            "target": "4bd00764-9c19-4f58-8d1e-1dddcf32eb0d"
+        },
+        {
+            "source": "6fe7ace3-6582-405f-bdd0-3ed3f5b75d9b",
+            "target": "513591fa-e823-4683-a97e-2a85d09a9c72"
+        },
+        {
+            "source": "6fe7ace3-6582-405f-bdd0-3ed3f5b75d9b",
+            "target": "4bd00764-9c19-4f58-8d1e-1dddcf32eb0d"
+        },
+        {
+            "source": "4bd00764-9c19-4f58-8d1e-1dddcf32eb0d",
+            "target": "513591fa-e823-4683-a97e-2a85d09a9c72"
+        },
+        {
+            "source": "4bd00764-9c19-4f58-8d1e-1dddcf32eb0d",
+            "target": "6fe7ace3-6582-405f-bdd0-3ed3f5b75d9b"
+        }
+    ]
+}
