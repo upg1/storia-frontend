@@ -7,29 +7,29 @@ import data from '../zettels.json';
 
 const isDraggable = true
 
+const initialNodes = data.nodes.map(({ id, ...restOfNode }) => ({
+  id, // Keep the id at the top level
+  type: 'customNode',
+  data: restOfNode, // Nest the rest of the properties within 'data'
+  position: { 
+    x: Math.random() * 400, 
+    y: Math.random() * 300 
+  }, 
+}));
+
+const initialEdges = data.edges.map((edge) => ({
+  ...edge,
+  id: `${edge.source}-${edge.target}`, // Construct composite ID
+  handle: 'default', //Set source handle to be default on all edges.
+}));
+
+
 function ReactFlowMindMap() {
-  const [nodes, setNodes] = useNodesState([]); 
-  const [edges, setEdges] = useEdgesState([]);
+  const [nodes, setNodes] = useNodesState([initialNodes]); 
+  const [edges, setEdges] = useEdgesState([initialEdges]);
 
   useEffect(() => {
-    const processedNodes = data.nodes.map(({ id, ...restOfNode }) => ({
-      id, // Keep the id at the top level
-      type: 'customNode',
-      data: restOfNode, // Nest the rest of the properties within 'data'
-      position: { 
-        x: Math.random() * 400, 
-        y: Math.random() * 300 
-      }, 
-    }));
-
-      const processedEdges = data.edges.map((edge) => ({
-      ...edge,
-      id: `${edge.source}-${edge.target}`, // Construct composite ID
-    }));
-
-  setNodes(processedNodes);
-  setEdges(processedEdges);
-  }, []); 
+  }, []);  
 
   const onNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -40,13 +40,13 @@ function ReactFlowMindMap() {
     [],
   );
 
-
   return (
     <ReactFlow  
        nodes={nodes}
         onNodesChange={onNodesChange}
         edges={edges}
         onEdgesChange={onEdgesChange}
+        connectionMode="loose"
       nodeTypes={{ customNode: ZettelNode }} 
       fitView 
     >
