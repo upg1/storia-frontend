@@ -4,7 +4,6 @@ import AppLayout from '../components/AppLayout';
 import ReactFlowCanvas from '../components/ReactFlowCanvas'
 import ReactFlowMindMap from '../components/ReactFlowMindMap'
 import PageLeft from '../components/PageLeft'
-import PageRight from '../components/PageRight'
 import {Provider} from 'react-redux'
 import store from '../store'
 
