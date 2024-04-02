@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
-import graphReducer from './graphReducer';
+import { combineReducers } from '@reduxjs/toolkit'; 
+import postGraphSlice from './postGraphSlice';
 
-const rootReducer = combineReducers({
-  graph: graphReducer,
+const rootReducer = {
+  posts: postGraphSlice, 
   // Add more reducers as your application grows
-});
+}
 
 export default rootReducer;

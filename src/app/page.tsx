@@ -5,6 +5,8 @@ import ReactFlowCanvas from '../components/ReactFlowCanvas'
 import ReactFlowMindMap from '../components/ReactFlowMindMap'
 import PageLeft from '../components/PageLeft'
 import PageRight from '../components/PageRight'
+import {Provider} from 'react-redux'
+import store from '../store'
 
 // import { Neo4jProvider, createDriver } from 'use-neo4j'
 
@@ -23,6 +25,7 @@ const AURA_API_KEY = process.env.AURA_API_KEY
 const HomePage = () => {
   return (
     // <AppLayout>
+    <Provider store={store}>
       <div className='react-flow-container'>
           <div className="PageContainer">
       <div className="PageLeft">
@@ -33,6 +36,7 @@ const HomePage = () => {
           </div>
       </div>
     </div>
+    </Provider>
     // </AppLayout>
   );
 };

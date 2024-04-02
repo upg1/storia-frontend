@@ -1,16 +1,17 @@
-'use client'
-import React, { useEffect, useCallback} from 'react';
-import ReactFlow, { MiniMap, Controls, Background, useNodesState, useEdgesState, applyNodeChanges, applyEdgeChanges} from 'reactflow';
-import ZettelNode from '../components/ReactFlowZettelNode'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPostGraphData } from '../store/reducers/postGraphSlice';
+import ReactFlow, { MiniMap, Controls, Background, useNodesState, useEdgesState } from 'reactflow';
+import ZettelNode from '../components/ReactFlowZettelNode';
 import data from '../zettels.json'; 
 import 'reactflow/dist/style.css'; 
 
-const isDraggable = true
+const isDraggable = true;
 
 const initialNodes = data.nodes.map(({ id, ...restOfNode }) => ({
-  id, // Keep the id at the top level
+  id,
   type: 'customNode',
-  data: restOfNode, // Nest the rest of the properties within 'data'
+  data: restOfNode,
   position: { 
     x: Math.random() * 400, 
     y: Math.random() * 300 
@@ -19,25 +20,42 @@ const initialNodes = data.nodes.map(({ id, ...restOfNode }) => ({
 
 const initialEdges = data.edges.map((edge) => ({
   ...edge,
-  id: `${edge.source}-${edge.target}`, // Construct composite ID
+  id: `${edge.source}-${edge.target}`,
 }));
 
-
 function ReactFlowMindMap() {
-  const [nodes, setNodes] = useNodesState(initialNodes); 
-  const [edges, setEdges] = useEdgesState(initialEdges);
+  const dispatch = useDispatch();
+  const { graphData, isLoading, error } = useSelector((state) => state.posts);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   useEffect(() => {
-  }, []);  
+    dispatch(fetchPostGraphData());
+  }, []); // Run this effect only once when the component mounts
 
-  const onNodesChange = useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    [],
-  );
-  const onEdgesChange = useCallback(
-    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    [],
-  );
+  useEffect(() => {
+    if (graphData && !nodes.length) {
+      const processedNodes = graphData.influencers.nodes.map(({ id, data }) => ({
+        id,
+        type: 'customNode',
+        data,
+        position: {
+          x: Math.random() * 400,
+          y: Math.random() * 300
+        },
+      }));
+      setNodes(processedNodes);
+      setEdges(graphData.influencers.edges);
+    }
+  }, [graphData, nodes]); // Run this effect whenever graphData or nodes change
+
+  if (isLoading) {
+    return <div>Loading graph data...</div>; 
+  }
+
+  if (error) {
+    return <div>Error fetching data: {error}</div>; 
+  }
 
   return (
     <ReactFlow  
