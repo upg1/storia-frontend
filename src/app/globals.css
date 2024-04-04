@@ -5,6 +5,7 @@
   padding: 0;
 }
 
+
 /* main.css */
 html, 
 body { 
@@ -75,4 +76,30 @@ body {
   background-color: #e0e0e0;  /* Example background color */
   height: 100vh;
   width: 50vw;
+}
+
+.input {
+  margin-top: 5px;
+}
+
+
+.input-label {
+  margin-top: 5px;
+}
+
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px; /* Adjust as needed */
+  background-color: #f0f0f0; /* Customize as needed */
+  padding: 20px;
+  text-decoration-line: none;
+}
+
+.sidebar a {
+  text-decoration: none; /* Removes underline */
+  color: inherit;
 }

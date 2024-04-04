@@ -1,11 +1,12 @@
 'use client'
-import AppLayout from '../components/AppLayout';
-// import CanvasLayout from '../components/CanvasLayout'
-import ReactFlowCanvas from '../components/ReactFlowCanvas'
 import ReactFlowMindMap from '../components/ReactFlowMindMap'
 import PageLeft from '../components/PageLeft'
 import {Provider} from 'react-redux'
 import store from '../store'
+import colors from './colorConfig';
+import { ThemeProvider } from '@mui/material';
+import Sidebar from '../components/Sidebar';
+
 
 // import { Neo4jProvider, createDriver } from 'use-neo4j'
 
@@ -24,18 +25,21 @@ const AURA_API_KEY = process.env.AURA_API_KEY
 const HomePage = () => {
   return (
     // <AppLayout>
-    <Provider store={store}>
-      <div className='react-flow-container'>
-          <div className="PageContainer">
-      <div className="PageLeft">
-        <PageLeft/>
+    <ThemeProvider theme={colors}>
+        <Provider store={store}>
+        <div className='react-flow-container'>
+        <div className="PageContainer">
+          <div className="PageLeft">
+            <PageLeft/>
           </div>
-      <div className="PageRight">
-        <ReactFlowMindMap />
+          <div className="PageRight">
+            <ReactFlowMindMap />
           </div>
+        </div>
       </div>
-    </div>
-    </Provider>
+      </Provider>
+    </ThemeProvider>
+    
     // </AppLayout>
   );
 };
