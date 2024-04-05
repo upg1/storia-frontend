@@ -18,7 +18,7 @@ function PageLeft() {
 
     try {
       setLoading(true);
-      const res = await axios.post('http://127.0.0.1:3333/get-tweets-by-handles', { data: [handles, keywords] });
+      const res = await axios.post('http://localhost:3333/get-tweets-by-handles', { data: [handles, keywords] });
       const themesArray = res.data.split(/\d+\./).filter(item => item.trim() !== '');
       setClaudeRes(themesArray);
       setLoading(false);
