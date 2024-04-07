@@ -7,8 +7,8 @@ import Sidebar from "./Sidebar";
 
 function PageLeft() {
   const theme = useTheme();
-  const [handles, setHandles] = useState('');
-  const [keywords, setKeywords] = useState('');
+  const [handles, setHandles] = useState([]);
+  const [query, setQuery] = useState('');
   const [claudeRes, setClaudeRes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,7 +18,8 @@ function PageLeft() {
 
     try {
       setLoading(true);
-      const res = await axios.post('http://localhost:3333/get-tweets-by-handles', { data: [handles, keywords] });
+      const res = await axios.post('http://127.0.0.1:8000/answer_query/', { user_query: query, 
+      handles_mentioned: handles });
       const themesArray = res.data.split(/\d+\./).filter(item => item.trim() !== '');
       setClaudeRes(themesArray);
       setLoading(false);
@@ -43,7 +44,7 @@ function PageLeft() {
           <label className="input-label">Enter Twitter handles or urls, separated by commas </label> <br />
           <TextField className="input" id="standard-basic" label="ex. elonmusk, sama" variant="standard" onChange={(e) => setHandles(e.target.value)}/><br />
           <label className="input-label">Enter Keywords to Filter by</label><br />
-          <TextField className="input" id="standard-basic" label="ex. science" variant="standard" onChange={(e) => setKeywords(e.target.value)}/><br />
+          <TextField className="input" id="standard-basic" label="ex. science" variant="standard" onChange={(e) => setQuery(e.target.value)}/><br />
           <Button variant="text" type="submit">Search</Button>
         </form>
         <br />
