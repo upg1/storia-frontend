@@ -32,9 +32,6 @@ const HomePage = () => {
                 <div className="PageLeft">
                   <PageLeft/>
                 </div>
-                <div className="PageRight">
-                  <ReactFlowMindMap />
-                </div>
               </div>
             </div>
         </Provider>

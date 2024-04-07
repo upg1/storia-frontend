@@ -20,8 +20,9 @@ function PageLeft() {
       setLoading(true);
       const res = await axios.post('http://127.0.0.1:8000/answer_query/', { user_query: query, 
       handles_mentioned: handles });
-      const themesArray = res.data.split(/\d+\./).filter(item => item.trim() !== '');
-      setClaudeRes(themesArray);
+      // const themesArray = res.data.split(/\d+\./).filter(item => item.trim() !== '');
+      // setClaudeRes(themesArray);
+      setClaudeRes(res.data);
       setLoading(false);
     } catch (error) {
       console.log('error fetching data', error);
@@ -52,31 +53,9 @@ function PageLeft() {
         <p style={{marginTop: '30px'}}>
           {loading ? <ClipLoader color={theme.palette.primary.main} /> : ''}
         </p>
-        <div className="cards" style={{ position: 'relative', height: '300px', overflow: 'hidden' }}>
-          {claudeRes.map((theme, index) => (
-            <div
-              key={index}
-              className={`card ${index === activeIndex ? 'active' : ''}`}
-              style={{
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                right: '0',
-                bottom: '0',
-                transform: `translateX(${(index - activeIndex) * 100}%)`,
-                zIndex: claudeRes.length - Math.abs(index - activeIndex),
-                padding: '10px',
-                backgroundColor: 'white',
-                border: `1px solid lavender`,
-                cursor: 'pointer',
-                transition: 'transform 0.5s ease-in-out'
-              }}
-              onClick={() => handleSwipe(index > activeIndex ? 'right' : 'left')}
-            >
-              {theme}
-            </div>
-          ))}
-        </div>
+        <div className="cards" style={{ position: 'relative', height: '300px', overflow: 'auto' }}>
+  {claudeRes}
+      </div>
         <div className="navigation" style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
           <Button
             variant="text"
