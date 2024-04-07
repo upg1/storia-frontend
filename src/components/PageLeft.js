@@ -20,9 +20,8 @@ function PageLeft() {
       setLoading(true);
       const res = await axios.post('http://127.0.0.1:8000/answer_query/', { user_query: query, 
       handles_mentioned: handles });
-      // const themesArray = res.data.split(/\d+\./).filter(item => item.trim() !== '');
-      // setClaudeRes(themesArray);
-      setClaudeRes(res.data);
+      const themesArray = res.data.split(/\d+\./).filter(item => item.trim() !== '');
+      setClaudeRes(themesArray);
       setLoading(false);
     } catch (error) {
       console.log('error fetching data', error);
@@ -53,10 +52,13 @@ function PageLeft() {
         <p style={{marginTop: '30px'}}>
           {loading ? <ClipLoader color={theme.palette.primary.main} /> : ''}
         </p>
-        <div className="cards" style={{ position: 'relative', height: '300px', overflow: 'auto' }}>
-  {claudeRes}
-      </div>
-        <div className="navigation" style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        <div className="cards" style={{ position: 'relative', height: '300px', overflow: 'auto', border: '1px solid #ddd', padding: '10px' }}>
+        {claudeRes.map((theme, index) => (
+            <p style={{marginTop: '10px'}}>{theme}</p>
+          ))}
+</div>
+
+        <div className="navigation" style={{ display: 'flex', justifyContent: 'left', marginTop: '20px' }}>
           <Button
             variant="text"
             style={{ marginRight: '10px' }}
