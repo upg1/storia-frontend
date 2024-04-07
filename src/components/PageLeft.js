@@ -41,18 +41,18 @@ function PageLeft() {
       <div style={{ textAlign: 'center', color: 'black' }}>
         <h2 style={{color: theme.palette.primary.main}}>Storia</h2>
         <form onSubmit={fetchData} style={{marginTop: '10px'}}>
-          <label className="input-label">Enter Twitter handles or urls, separated by commas </label> <br />
-          <TextField className="input" id="standard-basic" label="ex. elonmusk, sama" variant="standard" onChange={(e) => setHandles(e.target.value)}/><br />
-          <label className="input-label">Enter Keywords to Filter by</label><br />
-          <TextField className="input" id="standard-basic" label="ex. science" variant="standard" onChange={(e) => setQuery(e.target.value)}/><br />
+          <label className="input-label">Enter Twitter handles or urls, separated by commas to retrieve tweets:</label> <br />
+          <TextField fullWidth style={{marginBottom: '20px'}}className="input" id="standard-basic" label="ex. elonmusk, sama" variant="standard" onChange={(e) => setHandles(e.target.value)}/><br />
+          <label className="input-label">What is your question?</label><br />
+          <TextField fullWidth className="input" id="standard-basic" label="ex. Tell me how these indivuals feel about space" variant="standard" onChange={(e) => setQuery(e.target.value)}/><br />
           <Button variant="text" type="submit">Search</Button>
         </form>
         <br />
         <h3>Analysis: </h3>
-        <p style={{marginTop: '50px'}}>
+        <p style={{marginTop: '30px'}}>
           {loading ? <ClipLoader color={theme.palette.primary.main} /> : ''}
         </p>
-        <div className="cards" style={{ position: 'relative', height: '250px', overflow: 'hidden' }}>
+        <div className="cards" style={{ position: 'relative', height: '300px', overflow: 'hidden' }}>
           {claudeRes.map((theme, index) => (
             <div
               key={index}

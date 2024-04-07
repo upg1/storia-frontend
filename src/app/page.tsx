@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import store from '../store'
 import colors from './colorConfig';
 import { ThemeProvider } from '@mui/material';
-import Sidebar from '../components/Sidebar';
+
 
 
 // import { Neo4jProvider, createDriver } from 'use-neo4j'
@@ -25,21 +25,20 @@ const AURA_API_KEY = process.env.AURA_API_KEY
 const HomePage = () => {
   return (
     // <AppLayout>
-    <ThemeProvider theme={colors}>
-        <Provider store={store}>
-        <div className='react-flow-container'>
-        <div className="PageContainer">
-          <div className="PageLeft">
-            <PageLeft/>
-          </div>
-          <div className="PageRight">
-            <ReactFlowMindMap />
-          </div>
-        </div>
-      </div>
-      </Provider>
-    </ThemeProvider>
-    
+        <ThemeProvider theme={colors}>
+          <Provider store={store}>
+              <div className='react-flow-container'>
+              <div className="PageContainer">
+                <div className="PageLeft">
+                  <PageLeft/>
+                </div>
+                <div className="PageRight">
+                  <ReactFlowMindMap />
+                </div>
+              </div>
+            </div>
+        </Provider>
+      </ThemeProvider>
     // </AppLayout>
   );
 };
